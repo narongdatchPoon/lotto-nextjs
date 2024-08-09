@@ -138,5 +138,5 @@ export default function ExplosionConfetti(
     }
   });
 
-  return <mesh ref={groupRef} />;
+  return <mesh ref={groupRef} scale={5} position={[0, 10, 0]} />;
 }

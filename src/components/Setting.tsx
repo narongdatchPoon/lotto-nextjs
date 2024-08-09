@@ -5,15 +5,22 @@ export default function Setting({
   defaultUnit,
   defaultMaxTimeSpin,
   defaultMinTimeSpin,
+  defaultCameraLock,
+  defaultConfetti,
 }) {
-  const [isOpenDialog, setOpenDialog] = useState(true);
+  const [isOpenDialog, setOpenDialog] = useState(false);
   const [unit, setUnit] = useState(defaultUnit);
+  const [cameraLock, setCameraLock] = useState(defaultCameraLock);
+  const [confetti, setConfetti] = useState(defaultConfetti);
   const [minTimeSpin, setMinTimeSpin] = useState(defaultMinTimeSpin);
   const [maxTimeSpin, setMaxTimeSpin] = useState(defaultMaxTimeSpin);
+
   useEffect(() => {
     setUnit(defaultUnit);
     setMinTimeSpin(defaultMinTimeSpin);
     setMaxTimeSpin(defaultMaxTimeSpin);
+    setCameraLock(defaultCameraLock);
+    setConfetti(defaultConfetti);
   }, [isOpenDialog]);
 
   return (
@@ -104,12 +111,13 @@ export default function Setting({
                         >
                           Setting
                         </h3>
+
                         <div className="mt-4">
                           <label
                             for="default-range"
                             className="block mb-2 text-sm font-medium text-gray-900 "
                           >
-                            Select Unit
+                            Select Digits
                           </label>
                           <button
                             onClick={() => setUnit(1)}
@@ -146,6 +154,68 @@ export default function Setting({
                           </button>
                         </div>
 
+                        <div className="mt-4">
+                          <label
+                            for="default-range"
+                            className="block mb-2 text-sm font-medium text-gray-900 "
+                          >
+                            Camera Lock
+                          </label>
+                          <button
+                            onClick={() => setCameraLock(1)}
+                            type="button"
+                            className={`${
+                              cameraLock == 1
+                                ? "bg-red-600 text-white"
+                                : "bg-white text-gray-900"
+                            } inline-flex w-full ring-gray-300 justify-center rounded-md  ring-1 ring-inset  px-3 py-2 text-sm font-semibold  shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto`}
+                          >
+                            On
+                          </button>
+                          <button
+                            onClick={() => setCameraLock(0)}
+                            type="button"
+                            className={`${
+                              cameraLock == 0
+                                ? "bg-red-600 text-white"
+                                : "bg-white text-gray-900"
+                            } inline-flex w-full ring-gray-300 justify-center rounded-md  ring-1 ring-inset  px-3 py-2 text-sm font-semibold  shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto`}
+                          >
+                            Off
+                          </button>
+                        </div>
+
+                        <div className="mt-4">
+                          <label
+                            for="default-range"
+                            className="block mb-2 text-sm font-medium text-gray-900 "
+                          >
+                            Confetti
+                          </label>
+                          <button
+                            onClick={() => setConfetti(1)}
+                            type="button"
+                            className={`${
+                              confetti == 1
+                                ? "bg-red-600 text-white"
+                                : "bg-white text-gray-900"
+                            } inline-flex w-full ring-gray-300 justify-center rounded-md  ring-1 ring-inset  px-3 py-2 text-sm font-semibold  shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto`}
+                          >
+                            On
+                          </button>
+                          <button
+                            onClick={() => setConfetti(0)}
+                            type="button"
+                            className={`${
+                              confetti == 0
+                                ? "bg-red-600 text-white"
+                                : "bg-white text-gray-900"
+                            } inline-flex w-full ring-gray-300 justify-center rounded-md  ring-1 ring-inset  px-3 py-2 text-sm font-semibold  shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto`}
+                          >
+                            Off
+                          </button>
+                        </div>
+
                         <div className="mt-6">
                           <label
                             for="default-range"
@@ -153,17 +223,7 @@ export default function Setting({
                           >
                             Min Time Sping (milisec)
                           </label>
-                          <button
-                            onClick={() => setMinTimeSpin(1000)}
-                            type="button"
-                            className={`${
-                              minTimeSpin == 1000
-                                ? "bg-red-600 text-white"
-                                : "bg-white text-gray-900"
-                            } inline-flex w-full ring-gray-300 justify-center rounded-md  ring-1 ring-inset  px-3 py-2 text-sm font-semibold  shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto`}
-                          >
-                            1000
-                          </button>
+
                           <button
                             onClick={() => setMinTimeSpin(2000)}
                             type="button"
@@ -175,17 +235,7 @@ export default function Setting({
                           >
                             2000
                           </button>
-                          <button
-                            onClick={() => setMinTimeSpin(3000)}
-                            type="button"
-                            className={`${
-                              minTimeSpin == 3000
-                                ? "bg-red-600 text-white"
-                                : "bg-white text-gray-900"
-                            } inline-flex w-full ring-gray-300 justify-center rounded-md  ring-1 ring-inset  px-3 py-2 text-sm font-semibold  shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto`}
-                          >
-                            3000
-                          </button>
+
                           <button
                             onClick={() => setMinTimeSpin(4000)}
                             type="button"
@@ -197,17 +247,7 @@ export default function Setting({
                           >
                             4000
                           </button>
-                          <button
-                            onClick={() => setMinTimeSpin(5000)}
-                            type="button"
-                            className={`${
-                              minTimeSpin == 5000
-                                ? "bg-red-600 text-white"
-                                : "bg-white text-gray-900"
-                            } inline-flex w-full ring-gray-300 justify-center rounded-md  ring-1 ring-inset  px-3 py-2 text-sm font-semibold  shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto`}
-                          >
-                            5000
-                          </button>
+
                           <button
                             onClick={() => setMinTimeSpin(6000)}
                             type="button"
@@ -219,17 +259,7 @@ export default function Setting({
                           >
                             6000
                           </button>
-                          <button
-                            onClick={() => setMinTimeSpin(7000)}
-                            type="button"
-                            className={`${
-                              minTimeSpin == 7000
-                                ? "bg-red-600 text-white"
-                                : "bg-white text-gray-900"
-                            } inline-flex w-full ring-gray-300 justify-center rounded-md  ring-1 ring-inset  px-3 py-2 text-sm font-semibold  shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto`}
-                          >
-                            7000
-                          </button>
+
                           <button
                             onClick={() => setMinTimeSpin(8000)}
                             type="button"
@@ -241,17 +271,7 @@ export default function Setting({
                           >
                             8000
                           </button>
-                          <button
-                            onClick={() => setMinTimeSpin(9000)}
-                            type="button"
-                            className={`${
-                              minTimeSpin == 9000
-                                ? "bg-red-600 text-white"
-                                : "bg-white text-gray-900"
-                            } inline-flex w-full ring-gray-300 justify-center rounded-md  ring-1 ring-inset  px-3 py-2 text-sm font-semibold  shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto`}
-                          >
-                            9000
-                          </button>
+
                           <button
                             onClick={() => setMinTimeSpin(10000)}
                             type="button"
@@ -272,17 +292,7 @@ export default function Setting({
                           >
                             Range Time Sping (milisec)
                           </label>
-                          <button
-                            onClick={() => setMaxTimeSpin(1000)}
-                            type="button"
-                            className={`${
-                              maxTimeSpin == 1000
-                                ? "bg-red-600 text-white"
-                                : "bg-white text-gray-900"
-                            } inline-flex w-full ring-gray-300 justify-center rounded-md  ring-1 ring-inset  px-3 py-2 text-sm font-semibold  shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto`}
-                          >
-                            1000
-                          </button>
+
                           <button
                             onClick={() => setMaxTimeSpin(2000)}
                             type="button"
@@ -294,17 +304,7 @@ export default function Setting({
                           >
                             2000
                           </button>
-                          <button
-                            onClick={() => setMaxTimeSpin(3000)}
-                            type="button"
-                            className={`${
-                              maxTimeSpin == 3000
-                                ? "bg-red-600 text-white"
-                                : "bg-white text-gray-900"
-                            } inline-flex w-full ring-gray-300 justify-center rounded-md  ring-1 ring-inset  px-3 py-2 text-sm font-semibold  shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto`}
-                          >
-                            3000
-                          </button>
+
                           <button
                             onClick={() => setMaxTimeSpin(4000)}
                             type="button"
@@ -316,17 +316,7 @@ export default function Setting({
                           >
                             4000
                           </button>
-                          <button
-                            onClick={() => setMaxTimeSpin(5000)}
-                            type="button"
-                            className={`${
-                              maxTimeSpin == 5000
-                                ? "bg-red-600 text-white"
-                                : "bg-white text-gray-900"
-                            } inline-flex w-full ring-gray-300 justify-center rounded-md  ring-1 ring-inset  px-3 py-2 text-sm font-semibold  shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto`}
-                          >
-                            5000
-                          </button>
+
                           <button
                             onClick={() => setMaxTimeSpin(6000)}
                             type="button"
@@ -338,17 +328,7 @@ export default function Setting({
                           >
                             6000
                           </button>
-                          <button
-                            onClick={() => setMaxTimeSpin(7000)}
-                            type="button"
-                            className={`${
-                              maxTimeSpin == 7000
-                                ? "bg-red-600 text-white"
-                                : "bg-white text-gray-900"
-                            } inline-flex w-full ring-gray-300 justify-center rounded-md  ring-1 ring-inset  px-3 py-2 text-sm font-semibold  shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto`}
-                          >
-                            7000
-                          </button>
+
                           <button
                             onClick={() => setMaxTimeSpin(8000)}
                             type="button"
@@ -360,17 +340,7 @@ export default function Setting({
                           >
                             8000
                           </button>
-                          <button
-                            onClick={() => setMaxTimeSpin(9000)}
-                            type="button"
-                            className={`${
-                              maxTimeSpin == 9000
-                                ? "bg-red-600 text-white"
-                                : "bg-white text-gray-900"
-                            } inline-flex w-full ring-gray-300 justify-center rounded-md  ring-1 ring-inset  px-3 py-2 text-sm font-semibold  shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto`}
-                          >
-                            9000
-                          </button>
+
                           <button
                             onClick={() => setMaxTimeSpin(10000)}
                             type="button"
@@ -393,6 +363,8 @@ export default function Setting({
                           unit: unit,
                           minTimeSpin: minTimeSpin,
                           maxTimeSpin: maxTimeSpin,
+                          cameraLock: cameraLock,
+                          confetti: confetti,
                         });
                         setOpenDialog(false);
                       }}

@@ -2,9 +2,10 @@ import { useMatcapTexture } from "@react-three/drei";
 import { useFrame, useLoader, useThree } from "@react-three/fiber";
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
+import ExplosionConfetti from "./Confetti";
 import NumberLotto from "./NumberLotto";
 
-export default function Cylinder({ props, minTime, maxTime }) {
+export default function Cylinder({ props, minTime, maxTime, confetti }) {
   const ref = useRef();
   const refGroup = useRef();
   const [glassMat] = useMatcapTexture("3B3C3F_DAD9D5_929290_ABACA8");
@@ -36,9 +37,6 @@ export default function Cylinder({ props, minTime, maxTime }) {
         const shiftPosition1 = blockMove - offSet / 10;
         ref.current.rotation.y -= shiftPosition1 * delta;
       }
-
-      // setIsAnimating(false);
-      // setLottoNumber("-");
     }
     if (isAnimating) {
       const array = [0, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0];
@@ -112,6 +110,15 @@ export default function Cylinder({ props, minTime, maxTime }) {
   return (
     <>
       <group position={props.position} ref={refGroup}>
+        {confetti && (
+          <ExplosionConfetti
+            rate={3}
+            fallingHeight={9}
+            amount={50}
+            enableShadows={false}
+            isExploding={isAnimating && power == 0}
+          />
+        )}
         <NumberLotto lotto={lottoNumber} />
         {/* Lotto */}
         <mesh

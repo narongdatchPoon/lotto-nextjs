@@ -7,6 +7,7 @@ export default function ModelReflector({
   unitPosition,
   minTime,
   maxTime,
+  confetti,
 }) {
   const group = useRef();
   // const { nodes } = useGLTF("/pink-d.glb");
@@ -43,6 +44,7 @@ export default function ModelReflector({
         )}
       </Reflector>
       {/* <Model /> */}
+
       <Hero />
       {positions[unitPosition - 1].map((position, index) => (
         <Cylinder
@@ -50,6 +52,7 @@ export default function ModelReflector({
           props={(position = { position })}
           minTime={minTime}
           maxTime={maxTime}
+          confetti={confetti}
         />
       ))}
       {/* <Cylinder position={[-2, 6, 0]} color={"white"} />

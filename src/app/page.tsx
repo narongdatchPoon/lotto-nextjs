@@ -1,6 +1,5 @@
 "use client";
 import ModelReflector from "@/components/ModelReflector";
-import Rig from "@/components/Rig";
 import Setting from "@/components/Setting";
 import { Environment, OrbitControls, useGLTF } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
@@ -15,22 +14,29 @@ export default function Home() {
   const [windowHeight, setWindowHeight] = useState();
   const [unit, setUnit] = useState(3);
   const [minTimeSpin, setminTimeSpin] = useState(2000);
-  const [maxTimeSpin, setMaxTimeSpin] = useState(5000);
+  const [maxTimeSpin, setMaxTimeSpin] = useState(6000);
+  const [cameraLock, setCameraLock] = useState(1);
+  const [confetti, setConfetti] = useState(1);
+
   useEffect(() => {
     setWindowHeight(window.innerHeight);
-  });
-  const onSave = ({ unit, minTimeSpin, maxTimeSpin }) => {
+  }, []);
+  const onSave = ({ unit, minTimeSpin, maxTimeSpin, cameraLock, confetti }) => {
     setUnit(unit);
     setminTimeSpin(minTimeSpin);
     setMaxTimeSpin(maxTimeSpin);
+    setCameraLock(cameraLock);
+    setConfetti(confetti);
   };
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between bg-[#000]">
       <div className="absolute right-0 bottom-0 z-50">
         <Setting
+          defaultCameraLock={cameraLock}
           defaultMaxTimeSpin={maxTimeSpin}
           defaultMinTimeSpin={minTimeSpin}
+          defaultConfetti={confetti}
           onSave={onSave}
           defaultUnit={unit}
         />
@@ -55,17 +61,20 @@ export default function Home() {
               shadows
               dpr={[1, 2]}
               camera={{
-                position: [0, 40, 90],
-                fov: 35,
+                position: [0, 55, 100],
+                fov: 38,
+                rotateY: Math.PI * 2,
               }}
             >
               <fog attach="fog" args={["lightpink", 60, 190]} />
               <Suspense fallback={null}>
                 <ambientLight intensity={0.5} />
+
                 <ModelReflector
                   unitPosition={unit}
                   minTime={minTimeSpin}
                   maxTime={maxTimeSpin}
+                  confetti={confetti}
                 />
                 <spotLight position={[50, 50, -30]} castShadow />
                 <pointLight
@@ -81,16 +90,27 @@ export default function Home() {
                 />
                 <Environment preset="warehouse" />
                 {/* CameraShake */}
-                <Rig />
+                {/* <Rig /> */}
               </Suspense>
-              <OrbitControls
-                enableZoom={false}
-                enablePan={false}
-                minAzimuthAngle={-Math.PI * 2.01}
-                maxAzimuthAngle={-Math.PI * 1.99}
-                minPolarAngle={Math.PI / 2.8}
-                maxPolarAngle={Math.PI / 2.7}
-              />
+              {!cameraLock ? (
+                <OrbitControls
+                  enableZoom={true}
+                  enablePan={true}
+                  minAzimuthAngle={-Math.PI / 2}
+                  maxAzimuthAngle={Math.PI / 2}
+                  minPolarAngle={Math.PI / 8}
+                  maxPolarAngle={Math.PI / 3}
+                />
+              ) : (
+                <OrbitControls
+                  enableZoom={false}
+                  enablePan={false}
+                  minAzimuthAngle={-Math.PI * 2.01}
+                  maxAzimuthAngle={-Math.PI * 1.99}
+                  minPolarAngle={Math.PI / 2.8}
+                  maxPolarAngle={Math.PI / 2.7}
+                />
+              )}
             </Canvas>
           </div>
         )}
