@@ -1,5 +1,11 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Screen Short
+
+![alt text](https://github.com/narongdatchPoon/lotto-nextjs/blob/[branch]/screenshort.jpg?raw=true)
+
+![alt text](https://github.com/narongdatchPoon/lotto-nextjs/blob/[branch]/setting.jpg?raw=true)
+
 ## Getting Started
 
 First, run the development server:
