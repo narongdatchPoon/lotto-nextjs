@@ -2,9 +2,9 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Screen Short
 
-![alt text](https://github.com/narongdatchPoon/lotto-nextjs/blob/[branch]/screenshort.jpg?raw=true)
+![alt text](https://github.com/narongdatchPoon/lotto-nextjs/blob/main/public/image/screenshort.jpg?raw=true)
 
-![alt text](https://github.com/narongdatchPoon/lotto-nextjs/blob/[branch]/setting.jpg?raw=true)
+![alt text](https://github.com/narongdatchPoon/lotto-nextjs/blob/main/public/image/setting.jpg?raw=true)
 
 ## Getting Started
 
